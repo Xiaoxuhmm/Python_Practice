@@ -18,6 +18,7 @@ By using package requests, we can set headers and add it in requests and pretend
 
 Further improvement: I just found that some users' pages are set not allowed to read unless logging in. So cookies are necessary to add.
 
+
 [Problem 2] How to parse data
 In a zhihu webpage, only part of data right in html, and others are formed by javascript. So I cannot use BeautifulSoup to extract data directly.  There are also some info contained in comment part of a html file, how to parse those info efficiently ? 
 Possible Solutions:
@@ -33,19 +34,24 @@ Possible Solution: In order to parse a same user only once, I stored data in cas
 
 Further question: how does a crawler remove duplicate in industry? I find that the crawler frame scrapy use hash set to remove duplicate, is cassandra a good solution if the amount of data keep growing ?
 
+
 [Problem 4] The in coordination of fetch IDs and user information.
 Problem Discription: If a user follows many people, those people's IDs would distributed on different pages.  
+```sh
 For example:  User A - Following Page 1,
 			  User A - Following Page 2,
 			  User A - Following Page 3,
 			  User A - Following Page 4. 
+```
 In this case, the crawler has to traverse all those pages to get all the IDs, but in this process, crawler would only get the user information of A.  So I decide to seperate this into two program, one fetch the IDs, another one to collect user information.
 
 Further question and improvement: I find a possible solution is that send request for following information table from servers directly. But it seems that the web server has set the limitation to how many pieace of info we could get in one query ?  I am not sure, may be this is another way to improve this program.
 
+
 [Problem 5] multi-threading or multi-processing or multi ? 
 In zhihu's robot.txt crawler delay is set to 10. In case my IP is blocked, I used proxies. However I meet some prolem how to do that.
 Firstly, I come up with scheduler, hope that would help me. But sooner, I find my IDs to visit are all stored in cassandra. If I use multi-thread, it could caused an ID being used for multiple times.
+```sh
 For example:
 			thread A				table:      thread B
 				|_____get________ >row 1			|
@@ -54,7 +60,7 @@ For example:
 				|					   		thread B sleep
 				|_______delete______>				|
 									  <___delete____|
-
+```
 This is what I thought, would that truly happen?  Is that possible for cassandra to avoid that? 
 In this problem, I find two possible solution:
 1. Use a queue, to get data into a queue, every time the queue fetch IDs from cassandra, it delete those IDs. 
