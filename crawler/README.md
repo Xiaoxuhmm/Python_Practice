@@ -1,7 +1,10 @@
 # Zhihu Crawler
 
-The zhihu crawler contains User_id_collector.py,  zhihu_user_info_collector.py,  zhihu_user_processing.py, zhihu_crawler.ini
-
+1. The zhihu crawler contains User_id_collector.py,  zhihu_user_info_collector.py,  zhihu_user_processing.py, zhihu_crawler.ini
+2. User_id_collector.py fetch people's ID which used to form a url, which we could get user information from.
+zhihu_user_info_collector.py is used to fetch user information such as name, headline, education background, work information and followship. The basic information are stored in cassandra and followship information are send to kafka.
+3. zhihu_user_processing.py read data from kafka can calculate the average following people and followees of users.
+4. zhihu_crawler.ini is a config file for this program.
 
 ## Basic Idea
 The basic idea is extract data from users' following page including the people's ID that this user is following and we can also get user's basic info from this page.
