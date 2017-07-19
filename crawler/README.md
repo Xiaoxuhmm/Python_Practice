@@ -76,6 +76,6 @@ Possible Solution: I searched on the website, and I find distributed crawler is 
 
 
 [The most important question]
-I'm not a cs students, and I know there is a lot of inapropiate way of coding and designing. Q A Q. Hope I could some adivce on this part.
+I think there would be a lot of inapropiate way of coding and designing. Q A Q. Hope I could some adivce on this part.
 
 Thank you soooooooo much! 
