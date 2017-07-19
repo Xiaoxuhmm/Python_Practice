@@ -2,9 +2,9 @@
 
 1. The zhihu crawler contains User_id_collector.py,  zhihu_user_info_collector.py,  zhihu_user_processing.py, zhihu_crawler.ini
 2. User_id_collector.py fetch people's ID which used to form a url, which we could get user information from.
-zhihu_user_info_collector.py is used to fetch user information such as name, headline, education background, work information and followship. The basic information are stored in cassandra and followship information are send to kafka.
-3. zhihu_user_processing.py read data from kafka can calculate the average following people and followees of users.
-4. zhihu_crawler.ini is a config file for this program.
+3. zhihu_user_info_collector.py is used to fetch user information such as name, headline, education background, work information and followship. The basic information are stored in cassandra and followship information are send to kafka.
+4. zhihu_user_processing.py read data from kafka can calculate the average following people and followees of users.
+5. zhihu_crawler.ini is a config file for this program.
 
 ## Basic Idea
 The basic idea is extract data from users' following page including the people's ID that this user is following and we can also get user's basic info from this page.
@@ -41,7 +41,7 @@ Further question: how does a crawler remove duplicate in industry? I find that t
 [Problem 4] The in coordination of fetch IDs and user information.
 Problem Discription: If a user follows many people, those people's IDs would distributed on different pages.  
 ```sh
-For example:  User A - Following Page 1,
+For example:  		  User A - Following Page 1,
 			  User A - Following Page 2,
 			  User A - Following Page 3,
 			  User A - Following Page 4. 
@@ -56,13 +56,13 @@ In zhihu's robot.txt crawler delay is set to 10. In case my IP is blocked, I use
 Firstly, I come up with scheduler, hope that would help me. But sooner, I find my IDs to visit are all stored in cassandra. If I use multi-thread, it could caused an ID being used for multiple times.
 ```sh
 For example:
-			thread A				table:      thread B
-				|_____get________ >row 1			|
-				| sleep				   ^			|
-				|					   |___get______|
-				|					   		thread B sleep
-				|_______delete______>				|
-									  <___delete____|
+			thread A		 table:      thread B
+				|_____get________ >row 1	 |
+				| sleep		    ^	  	 |
+				|		    |___get______|
+				|			   thread B sleep
+				|_______delete______>		 |
+						   <___delete____|
 ```
 This is what I thought, would that truly happen?  Is that possible for cassandra to avoid that? 
 In this problem, I find two possible solution:
