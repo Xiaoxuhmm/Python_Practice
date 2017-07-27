@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <style type="text/css">
+    #tables{
+      width:75%;
+      margin:0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Zhihu Top Users!</h2>
+  <p>Check the top user so far by enter range in blank below in form start-end. </p>
+  <p>For example: 100-200</p>
+  <form>
+    <div class="form-group">
+      <label for="users">Range:</label>
+      <input type="text" class="form-control" id="range">
+    </div>
+  </form>
+  <div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="check-user-button">Check</button>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div id=tables>
+  <script language="javascript" type="text/javascript">
+    <!--
+      var myArray = new Array(8);
+
+      var zhihu_user_table = "<table class='table table-bordered'><thead class='thead-inverse'>";
+      zhihu_user_table+="<tr><th>#</th><th>User Name</th><th>User ID</th><th>Followees</th></tr></thead><tbody>";
+      for (var i=0; i < myArray.length; i++) {
+        zhihu_user_table+="<tr><th scope='row'>"+ (i + 1) + "</th><td></td><td></td><td></td></tr>";
+      }
+      zhihu_user_table+="</tbody></table>";
+    document.write(zhihu_user_table);  
+  </script>
+</div>
+
+
+</body>
+</html>
+
+
