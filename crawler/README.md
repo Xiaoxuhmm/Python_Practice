@@ -72,10 +72,5 @@ My quesition is, which one is better? and what solution is used in practical usa
 
 
 However, I find another problem.  The requests that connect to web server is not threading safe. And its possible they get message that designated to another thread if used.  
-Possible Solution: I searched on the website, and I find distributed crawler is used at industral level. And it is also said the main part is asynchronous and non-block sockets are the solution. My question is that what solution is truly used in industry ?
+Possible Solution: I searched on the website, and I find distributed crawler is used at industral level. And it is also said the main part is asynchronous and non-block sockets are the solution.
 
-
-[The most important question]
-I think there would be a lot of inapropiate way of coding and designing. Q A Q. Hope I could some adivce on this part.
-
-Thank you soooooooo much! 
